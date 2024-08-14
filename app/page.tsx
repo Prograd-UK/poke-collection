@@ -34,11 +34,7 @@ const HomePage = async ({ searchParams }: Props) => {
       <ul className="grid md:grid-cols-3 gap-4 w-full">
         {pokemon.map((pokemon) => (
           <li key={pokemon.id}>
-            <PokemonCard
-              name={pokemon.name}
-              imageUrl={pokemon.imageUrl}
-              types={pokemon.types}
-            />
+            <PokemonCard {...pokemon} />
           </li>
         ))}
       </ul>

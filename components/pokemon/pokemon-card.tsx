@@ -6,16 +6,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { HeartIcon, PlusCircleIcon } from "lucide-react";
 import Image from "next/image";
+import { LikeButton } from "./like-button";
 
 interface Props {
+  id: string;
   name: string;
   imageUrl: string;
+  isLiked?: boolean;
   types: Array<{ id: string; name: string; icon?: string | null }>;
 }
 
-export const PokemonCard = ({ name, imageUrl, types }: Props) => {
+export const PokemonCard = ({ id, name, imageUrl, isLiked, types }: Props) => {
   return (
     <Card>
       <CardHeader>
@@ -32,10 +36,7 @@ export const PokemonCard = ({ name, imageUrl, types }: Props) => {
         <Image src={imageUrl} alt={name} width={96} height={96} />
       </CardContent>
       <CardFooter className="border-t justify-between py-3">
-        <button className="group">
-          <span className="sr-only">Like</span>
-          <HeartIcon className="group-hover:fill-red-400" />
-        </button>
+        <LikeButton pokemonId={id} isLiked={isLiked} />
         <button className="group">
           <span className="sr-only">Add to collection</span>
           <PlusCircleIcon />
