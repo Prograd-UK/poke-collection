@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import * as pokemonApi from "@/lib/api/pokemon";
 import {
   Pagination,
@@ -11,6 +9,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { getPaginationItems } from "@/lib/utils";
+import { PokemonCard } from "@/components/pokemon/pokemon-card";
 
 interface Props {
   searchParams: { page?: string; limit?: string };
@@ -36,21 +35,7 @@ const HomePage = async ({ searchParams }: Props) => {
       <ul className="grid grid-cols-3 gap-4">
         {pokemon.map((pokemon) => (
           <li key={pokemon.id}>
-            <Card>
-              <CardHeader>
-                <CardTitle className="uppercase text-xl text-center">
-                  {pokemon.name}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex justify-center">
-                <Image
-                  src={pokemon.imageUrl}
-                  alt={pokemon.name}
-                  width={96}
-                  height={96}
-                />
-              </CardContent>
-            </Card>
+            <PokemonCard name={pokemon.name} imageUrl={pokemon.imageUrl} />
           </li>
         ))}
       </ul>
