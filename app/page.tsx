@@ -1,9 +1,34 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import prisma from "@/lib/prisma";
+import * as pokemonApi from "@/lib/api/pokemon";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { getPaginationItems } from "@/lib/utils";
 
-const HomePage = async () => {
-  const pokemon = await prisma.pokemon.findMany();
+interface Props {
+  searchParams: { page?: string; limit?: string };
+}
+
+const HomePage = async ({ searchParams }: Props) => {
+  const page = searchParams.page ? Number(searchParams.page) : 1;
+  const limit = searchParams.limit ? Number(searchParams.limit) : 10;
+
+  const {
+    data: pokemon,
+    pagination: { pages },
+  } = await pokemonApi.getAll({ page, limit });
+
+  const paginationItems = getPaginationItems({
+    currentPage: page,
+    totalPages: pages,
+  });
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen gap-6">
@@ -29,6 +54,41 @@ const HomePage = async () => {
           </li>
         ))}
       </ul>
+
+      <Pagination>
+        <PaginationContent>
+          {page !== 1 && (
+            <PaginationItem>
+              <PaginationPrevious
+                href={{ href: "/", query: { limit, page: page - 1 } }}
+              />
+            </PaginationItem>
+          )}
+          {paginationItems.map((item) =>
+            typeof item === "number" ? (
+              <PaginationItem key={item}>
+                <PaginationLink
+                  href={{ href: "/", query: { limit, page: item } }}
+                  isActive={page === item}
+                >
+                  {item}
+                </PaginationLink>
+              </PaginationItem>
+            ) : (
+              <PaginationItem key={item}>
+                <PaginationEllipsis />
+              </PaginationItem>
+            )
+          )}
+          {page !== pages && (
+            <PaginationItem>
+              <PaginationNext
+                href={{ href: "/", query: { limit, page: page + 1 } }}
+              />
+            </PaginationItem>
+          )}
+        </PaginationContent>
+      </Pagination>
     </main>
   );
 };
