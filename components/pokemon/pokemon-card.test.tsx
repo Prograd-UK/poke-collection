@@ -7,7 +7,7 @@ it("Renders correctly", () => {
   const name = faker.animal.dog();
   const imageUrl = faker.image.url();
 
-  render(<PokemonCard name={name} imageUrl={imageUrl} />);
+  render(<PokemonCard name={name} imageUrl={imageUrl} types={[]} />);
 
   expect(screen.getByRole("heading", { name })).toBeInTheDocument();
   expect(screen.getByRole("img", { name })).toBeInTheDocument();

@@ -8,14 +8,36 @@ interface GetAllArgs {
 }
 
 export async function getAll({ page, limit }: GetAllArgs) {
-  const [count, data] = await Promise.all([
+  const [count, pokemon] = await Promise.all([
     prisma.pokemon.count(),
     prisma.pokemon.findMany({
       skip: (page - 1) * limit,
       take: limit,
       orderBy: { name: "asc" },
+      select: {
+        id: true,
+        name: true,
+        imageUrl: true,
+        types: {
+          select: {
+            type: {
+              select: {
+                id: true,
+                name: true,
+                icon: true,
+              },
+            },
+          },
+        },
+      },
     }),
   ]);
 
-  return { data, pagination: { count, pages: Math.ceil(count / limit) } };
+  return {
+    data: pokemon.map((pokemon) => ({
+      ...pokemon,
+      types: pokemon.types.map(({ type }) => ({ ...type })),
+    })),
+    pagination: { count, pages: Math.ceil(count / limit) },
+  };
 }
