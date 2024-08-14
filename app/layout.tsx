@@ -20,17 +20,21 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <header className="flex items-center justify-between h-20 fixed top-0 left-0 w-full px-4 border-b rounded-b-lg shadow-md bg-white">
-            <Link href="/">
-              <h1 className="font-bold">Poke Collection</h1>
-            </Link>
-            <nav>
-              <ClerkLoaded>
-                <UserButton />
-              </ClerkLoaded>
-            </nav>
+          <header className="h-20 fixed top-0 left-0 w-full px-4 border-b rounded-b-lg shadow-md bg-white flex items-center">
+            <div className="max-w-[1024px] flex items-center justify-between w-full mx-auto">
+              <Link href="/">
+                <h1 className="font-bold">Poke Collection</h1>
+              </Link>
+              <nav>
+                <ClerkLoaded>
+                  <UserButton />
+                </ClerkLoaded>
+              </nav>
+            </div>
           </header>
-          <div className="mt-20">{children}</div>
+          <div className="mt-20 py-6 max-w-[1024px] mx-auto px-4 md:px-0">
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>

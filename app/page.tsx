@@ -30,8 +30,8 @@ const HomePage = async ({ searchParams }: Props) => {
   });
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen gap-6">
-      <ul className="grid grid-cols-3 gap-4">
+    <main className="flex flex-col items-center justify-center gap-6">
+      <ul className="grid md:grid-cols-3 gap-4 w-full">
         {pokemon.map((pokemon) => (
           <li key={pokemon.id}>
             <PokemonCard name={pokemon.name} imageUrl={pokemon.imageUrl} />
