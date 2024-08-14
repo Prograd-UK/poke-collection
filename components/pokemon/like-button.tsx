@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { HeartIcon } from "lucide-react";
 import { useTransition } from "react";
 import * as pokemonApi from "@/lib/api/pokemon";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Props {
   pokemonId: string;
@@ -12,6 +13,7 @@ interface Props {
 
 export const LikeButton = ({ pokemonId, isLiked }: Props) => {
   const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
 
   function handleClick() {
     startTransition(() => {
@@ -19,19 +21,27 @@ export const LikeButton = ({ pokemonId, isLiked }: Props) => {
         pokemonApi
           .unlike(pokemonId)
           .then(() => {
-            console.log("Pokemon unliked successfully");
+            toast({
+              description: "Pokemon unliked successfully",
+            });
           })
-          .catch((error) => {
-            console.error("Error unliking pokemon", error);
+          .catch(() => {
+            toast({
+              variant: "destructive",
+              description: "Error unliking pokemon",
+            });
           });
       } else {
         pokemonApi
           .like(pokemonId)
           .then(() => {
-            console.log("Pokemon liked successfully");
+            toast({ description: "Pokemon liked successfully" });
           })
-          .catch((error) => {
-            console.error("Error liking pokemon", error);
+          .catch(() => {
+            toast({
+              variant: "destructive",
+              description: "Error liking pokemon",
+            });
           });
       }
     });
