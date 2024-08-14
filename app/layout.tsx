@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ClerkLoaded, ClerkProvider, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <header className="flex items-center justify-between h-20 fixed top-0 left-0 w-full px-4 border-b rounded-b-lg shadow-md bg-white">
+            <Link href="/">
+              <h1 className="font-bold">Poke Collection</h1>
+            </Link>
+            <nav>
+              <ClerkLoaded>
+                <UserButton />
+              </ClerkLoaded>
+            </nav>
+          </header>
+          <div className="mt-20">{children}</div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

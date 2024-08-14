@@ -31,7 +31,6 @@ const HomePage = async ({ searchParams }: Props) => {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen gap-6">
-      <h1 className="font-bold text-3xl">Poke Collection</h1>
       <ul className="grid grid-cols-3 gap-4">
         {pokemon.map((pokemon) => (
           <li key={pokemon.id}>
