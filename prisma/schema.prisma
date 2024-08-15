@@ -26,6 +26,7 @@ model Pokemon {
   types       PokemonTypeOnPokemon[]
   likes       Like[]
   collections PokemonOnCollection[]
+  comments    Comment[]
   createdAt   DateTime               @default(now())
   updatedAt   DateTime               @updatedAt
 }
@@ -83,4 +84,17 @@ model PokemonOnCollection {
   @@unique([pokemonId, collectionId])
   @@index([pokemonId])
   @@index([collectionId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  userId    String
+  pokemon   Pokemon? @relation(fields: [pokemonId], references: [id], onDelete: Cascade)
+  pokemonId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([pokemonId])
 }
