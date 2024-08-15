@@ -44,30 +44,30 @@ import {
   CommandList,
 } from "@/components/ui/command";
 
-const addPokemonInputSchema = z.object({
-  pokemonId: z.string().min(1),
+const addToCollectionInputSchema = z.object({
+  collectionId: z.string().min(1),
 });
 
-type AddPokemonInput = z.infer<typeof addPokemonInputSchema>;
+type AddToCollectionInput = z.infer<typeof addToCollectionInputSchema>;
 
 interface Props {
-  collectionId: string;
-  pokemon: Array<{ id: string; name: string }>;
+  pokemonId: string;
+  collections: Array<{ id: string; name: string }>;
 }
 
-export const AddPokemonModal = ({ collectionId, pokemon }: Props) => {
+export const AddToCollectionModal = ({ pokemonId, collections }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<AddPokemonInput>({
-    resolver: zodResolver(addPokemonInputSchema),
-    defaultValues: { pokemonId: "" },
+  const form = useForm<AddToCollectionInput>({
+    resolver: zodResolver(addToCollectionInputSchema),
+    defaultValues: { collectionId: "" },
   });
 
-  function handleSubmit(values: AddPokemonInput) {
+  function handleSubmit(values: AddToCollectionInput) {
     startTransition(() => {
       collectionsApi
-        .addPokemon({ ...values, collectionId })
+        .addPokemon({ ...values, pokemonId })
         .then(() => {
           toast({
             description: "Pokemon added to collection",
@@ -89,7 +89,7 @@ export const AddPokemonModal = ({ collectionId, pokemon }: Props) => {
       <DialogTrigger asChild>
         <Button className="flex items-center gap-2">
           <PlusCircleIcon />
-          Add Pokemon
+          Add To Collection
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -103,10 +103,10 @@ export const AddPokemonModal = ({ collectionId, pokemon }: Props) => {
           >
             <FormField
               control={form.control}
-              name="pokemonId"
+              name="collectionId"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Pokemon</FormLabel>
+                  <FormLabel>Collection</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -119,10 +119,10 @@ export const AddPokemonModal = ({ collectionId, pokemon }: Props) => {
                           )}
                         >
                           {field.value
-                            ? pokemon.find(
-                                (pokemon) => pokemon.id === field.value
+                            ? collections.find(
+                                (collection) => collection.id === field.value
                               )?.name
-                            : "Select Pokemon"}
+                            : "Select Collection"}
                           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                       </FormControl>
@@ -134,27 +134,27 @@ export const AddPokemonModal = ({ collectionId, pokemon }: Props) => {
                       }}
                     >
                       <Command>
-                        <CommandInput placeholder="Search pokemon..." />
+                        <CommandInput placeholder="Search collection..." />
                         <CommandList>
-                          <CommandEmpty>No pokemon found.</CommandEmpty>
+                          <CommandEmpty>No collection found.</CommandEmpty>
                           <CommandGroup>
-                            {pokemon.map((pokemon) => (
+                            {collections.map((collection) => (
                               <CommandItem
-                                value={pokemon.name}
-                                key={pokemon.id}
+                                value={collection.name}
+                                key={collection.id}
                                 onSelect={() => {
-                                  form.setValue("pokemonId", pokemon.id);
+                                  form.setValue("collectionId", collection.id);
                                 }}
                               >
                                 <Check
                                   className={cn(
                                     "mr-2 h-4 w-4",
-                                    pokemon.id === field.value
+                                    collection.id === field.value
                                       ? "opacity-100"
                                       : "opacity-0"
                                   )}
                                 />
-                                {pokemon.name}
+                                {collection.name}
                               </CommandItem>
                             ))}
                           </CommandGroup>

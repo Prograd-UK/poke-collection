@@ -22,6 +22,22 @@ export async function getAll() {
   });
 }
 
+export async function getList() {
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new Error("User not authenticated");
+  }
+
+  return prisma.collection.findMany({
+    where: { userId },
+    select: {
+      id: true,
+      name: true,
+    },
+  });
+}
+
 export async function getOne(id: string) {
   const { userId } = auth();
 
