@@ -9,3 +9,5 @@ const CollectionPage = ({ params: { id } }: Props) => {
     </div>
   );
 };
+
+export default CollectionPage;

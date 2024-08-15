@@ -20,28 +20,50 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { PlusCircleIcon } from "lucide-react";
+import { Loader2Icon, PlusCircleIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useState, useTransition } from "react";
+import * as collectionsApi from "@/lib/api/collections";
+import { toast } from "@/components/ui/use-toast";
 
 const collectionInputSchema = z.object({
   name: z.string(),
-  descritpion: z.string().optional(),
+  description: z.string().optional(),
 });
 
 type CollectionInput = z.infer<typeof collectionInputSchema>;
 
 export const AddCollectionModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<CollectionInput>({
     resolver: zodResolver(collectionInputSchema),
-    defaultValues: { name: "", descritpion: "" },
+    defaultValues: { name: "", description: "" },
   });
 
   function handleSubmit(values: CollectionInput) {
-    console.log(values);
+    startTransition(() => {
+      collectionsApi
+        .create(values)
+        .then(() => {
+          toast({
+            description: "Collection created successfully",
+          });
+          form.reset();
+          setIsOpen(false);
+        })
+        .catch(() => {
+          toast({
+            variant: "destructive",
+            description: "Error creating collection",
+          });
+        });
+    });
   }
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button className="flex items-center gap-2">
           <PlusCircleIcon />
@@ -72,7 +94,7 @@ export const AddCollectionModal = () => {
             />
             <FormField
               control={form.control}
-              name="descritpion"
+              name="description"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Description</FormLabel>
@@ -87,7 +109,13 @@ export const AddCollectionModal = () => {
               )}
             />
             <DialogFooter>
-              <Button type="submit">Save</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? (
+                  <Loader2Icon className="h-5 w-5 animate-spin" />
+                ) : (
+                  "Save"
+                )}
+              </Button>
             </DialogFooter>
           </form>
         </Form>
