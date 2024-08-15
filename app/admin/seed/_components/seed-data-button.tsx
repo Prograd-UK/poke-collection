@@ -1,11 +1,11 @@
 "use client";
 
+import { Loader2Icon } from "lucide-react";
 import { useTransition } from "react";
 
-import { Loader2Icon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 import { seedPokemonData } from "../_actions/seed";
-import { Button } from "@/components/ui/button";
 
 export const SeedDataButton = () => {
   const [isSeedPending, startSeedTransition] = useTransition();

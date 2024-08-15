@@ -1,7 +1,11 @@
 "use client";
 
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2Icon, PlusCircleIcon } from "lucide-react";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -20,11 +24,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Loader2Icon, PlusCircleIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
-import * as collectionsApi from "@/lib/api/collections";
 import { toast } from "@/components/ui/use-toast";
+import * as collectionsApi from "@/lib/api/collections";
 
 const collectionInputSchema = z.object({
   name: z.string(),

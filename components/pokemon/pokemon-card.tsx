@@ -1,3 +1,7 @@
+import { Library, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -6,10 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Image from "next/image";
+
 import { LikeButton } from "./like-button";
-import Link from "next/link";
-import { Library, MessageCircle } from "lucide-react";
 
 interface Props {
   id: string;

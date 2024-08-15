@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
-import { SeedDataButton } from "./_components/seed-data-button";
 import { redirect } from "next/navigation";
+
+import { SeedDataButton } from "./_components/seed-data-button";
 
 const SeedPage = () => {
   const { sessionClaims } = auth();

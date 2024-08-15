@@ -1,7 +1,9 @@
+import { notFound } from "next/navigation";
+
 import { PokemonCard } from "@/components/pokemon/pokemon-card";
 import * as collectionsApi from "@/lib/api/collections";
 import * as pokemonApi from "@/lib/api/pokemon";
-import { notFound } from "next/navigation";
+
 import { AddPokemonModal } from "./_components/add-pokemon-modal";
 
 interface Props {

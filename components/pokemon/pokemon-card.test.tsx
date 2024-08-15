@@ -1,7 +1,8 @@
-import { PokemonCard } from "./pokemon-card";
-import { expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
 import { faker } from "@faker-js/faker";
+import { render, screen } from "@testing-library/react";
+import { expect, it } from "vitest";
+
+import { PokemonCard } from "./pokemon-card";
 
 it("Renders correctly", () => {
   const name = faker.animal.dog();

@@ -1,8 +1,9 @@
 "use server";
 
-import prisma from "@/lib/prisma";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
+
+import prisma from "@/lib/prisma";
 
 export async function getAllByPokemonId(pokemonId: string) {
   const comments = await prisma.comment.findMany({

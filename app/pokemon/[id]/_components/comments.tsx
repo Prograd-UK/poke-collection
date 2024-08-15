@@ -1,8 +1,9 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import * as commentsApi from "@/lib/api/comments";
-import Image from "next/image";
 import { formatRelative } from "date-fns";
 import { MessageCircle } from "lucide-react";
+import Image from "next/image";
+
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import * as commentsApi from "@/lib/api/comments";
 
 interface Props {
   pokemonId: string;

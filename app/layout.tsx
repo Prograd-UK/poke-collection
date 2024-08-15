@@ -1,10 +1,12 @@
+import "./globals.css";
+
+import { ClerkLoaded, ClerkProvider, UserButton } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { ClerkLoaded, ClerkProvider, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { Toaster } from "@/components/ui/toaster";
+
 import { DesktopNav } from "@/components/shared/desktop-nav";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 

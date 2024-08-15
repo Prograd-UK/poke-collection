@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
+
 import { originalPokemon, typesToEmojiMap } from "./data";
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";

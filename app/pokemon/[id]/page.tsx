@@ -1,13 +1,15 @@
-import { Badge } from "@/components/ui/badge";
-import * as pokemonApi from "@/lib/api/pokemon";
-import * as collectionsApi from "@/lib/api/collections";
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { AddToCollectionModal } from "./_components/add-to-collection-modal";
+import { notFound } from "next/navigation";
+
 import { LikeButton } from "@/components/pokemon/like-button";
-import { Comments } from "./_components/comments";
+import { Badge } from "@/components/ui/badge";
+import * as collectionsApi from "@/lib/api/collections";
+import * as pokemonApi from "@/lib/api/pokemon";
+
+import { AddToCollectionModal } from "./_components/add-to-collection-modal";
 import { CommentForm } from "./_components/comment-form";
+import { Comments } from "./_components/comments";
 
 interface Props {
   params: { id: string };

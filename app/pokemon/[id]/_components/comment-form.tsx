@@ -1,9 +1,12 @@
 "use client";
 
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
+import { Loader2Icon, SendIcon } from "lucide-react";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,11 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Loader2Icon, SendIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { useTransition } from "react";
-import * as commentsApi from "@/lib/api/comments";
 import { toast } from "@/components/ui/use-toast";
+import * as commentsApi from "@/lib/api/comments";
 
 const commentInputSchema = z.object({
   content: z.string().min(1).max(200),

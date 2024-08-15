@@ -1,10 +1,11 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { HeartIcon } from "lucide-react";
 import { useTransition } from "react";
-import * as pokemonApi from "@/lib/api/pokemon";
+
 import { useToast } from "@/components/ui/use-toast";
+import * as pokemonApi from "@/lib/api/pokemon";
+import { cn } from "@/lib/utils";
 
 interface Props {
   pokemonId: string;

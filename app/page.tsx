@@ -1,4 +1,4 @@
-import * as pokemonApi from "@/lib/api/pokemon";
+import { PokemonCard } from "@/components/pokemon/pokemon-card";
 import {
   Pagination,
   PaginationContent,
@@ -8,8 +8,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import * as pokemonApi from "@/lib/api/pokemon";
 import { getPaginationItems } from "@/lib/utils";
-import { PokemonCard } from "@/components/pokemon/pokemon-card";
 
 interface Props {
   searchParams: { page?: string; limit?: string };

@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { AddCollectionModal } from "./_components/add-collection-modal";
-import * as collectionsApi from "@/lib/api/collections";
+
 import { CollectionCard } from "@/components/collections/collection-card";
+import * as collectionsApi from "@/lib/api/collections";
+
+import { AddCollectionModal } from "./_components/add-collection-modal";
 
 const CollectionsPage = async () => {
   const collections = await collectionsApi.getAll();
