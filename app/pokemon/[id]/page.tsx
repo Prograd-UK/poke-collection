@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { AddToCollectionModal } from "./_components/add-to-collection-modal";
 import { LikeButton } from "@/components/pokemon/like-button";
+import { Comments } from "./_components/comments";
+import { CommentForm } from "./_components/comment-form";
 
 interface Props {
   params: { id: string };
@@ -52,6 +54,10 @@ const PokemonPage = async ({ params: { id } }: Props) => {
         height={96}
         className="mx-auto"
       />
+      <section className="flex justify-center flex-col gap-6 max-w-[320px] mx-auto">
+        <Comments pokemonId={id} />
+        <CommentForm pokemonId={id} />
+      </section>
     </div>
   );
 };
