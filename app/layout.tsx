@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkLoaded, ClerkProvider, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { Toaster } from "@/components/ui/toaster";
+import { DesktopNav } from "@/components/shared/desktop-nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,11 +27,10 @@ export default function RootLayout({
               <Link href="/">
                 <h1 className="font-bold">Poke Collection</h1>
               </Link>
-              <nav>
-                <ClerkLoaded>
-                  <UserButton />
-                </ClerkLoaded>
-              </nav>
+              <DesktopNav className="hidden md:block" />
+              <ClerkLoaded>
+                <UserButton />
+              </ClerkLoaded>
             </div>
           </header>
           <div className="mt-20 py-6 max-w-[1024px] mx-auto px-4 md:px-0">
