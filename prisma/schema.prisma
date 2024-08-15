@@ -20,13 +20,14 @@ model PokemonType {
 }
 
 model Pokemon {
-  id        String                 @id @default(cuid())
-  name      String                 @unique
-  imageUrl  String
-  types     PokemonTypeOnPokemon[]
-  likes     Like[]
-  createdAt DateTime               @default(now())
-  updatedAt DateTime               @updatedAt
+  id          String                 @id @default(cuid())
+  name        String                 @unique
+  imageUrl    String
+  types       PokemonTypeOnPokemon[]
+  likes       Like[]
+  collections PokemonOnCollection[]
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
 }
 
 model PokemonTypeOnPokemon {
@@ -56,4 +57,30 @@ model Like {
   @@unique([pokemonId, userId])
   @@index([pokemonId])
   @@index([userId])
+}
+
+model Collection {
+  id          String                @id @default(cuid())
+  name        String
+  description String?
+  userId      String
+  pokemon     PokemonOnCollection[]
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+
+  @@index([userId])
+}
+
+model PokemonOnCollection {
+  id           String     @id @default(cuid())
+  pokemon      Pokemon    @relation(fields: [pokemonId], references: [id], onDelete: Cascade)
+  pokemonId    String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collectionId String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([pokemonId, collectionId])
+  @@index([pokemonId])
+  @@index([collectionId])
 }
