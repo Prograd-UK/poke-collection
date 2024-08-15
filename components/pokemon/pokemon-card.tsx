@@ -6,10 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PlusCircleIcon } from "lucide-react";
 import Image from "next/image";
 import { LikeButton } from "./like-button";
-import { AddPokemonToCollectionModal } from "@/components/collections/add-pokemon-to-collection-modal";
 
 interface Props {
   id: string;
@@ -37,7 +35,6 @@ export const PokemonCard = ({ id, name, imageUrl, isLiked, types }: Props) => {
       </CardContent>
       <CardFooter className="border-t justify-between py-3">
         <LikeButton pokemonId={id} isLiked={isLiked} />
-        <AddPokemonToCollectionModal pokemonId={id} />
       </CardFooter>
     </Card>
   );

@@ -1,6 +1,8 @@
 import { PokemonCard } from "@/components/pokemon/pokemon-card";
 import * as collectionsApi from "@/lib/api/collections";
+import * as pokemonApi from "@/lib/api/pokemon";
 import { notFound } from "next/navigation";
+import { AddPokemonModal } from "./_components/add-pokemon-modal";
 
 interface Props {
   params: { id: string };
@@ -13,10 +15,15 @@ const CollectionPage = async ({ params: { id } }: Props) => {
     notFound();
   }
 
+  const pokemon = await pokemonApi.getList();
+
   return (
     <div className="space-y-6">
       <div className="space-y-4">
-        <h1 className="font-bold text-xl">{collection.name}</h1>
+        <div className="flex items-center justify-between gap-4">
+          <h1 className="font-bold text-xl">{collection.name}</h1>
+          <AddPokemonModal collectionId={id} pokemon={pokemon} />
+        </div>
         <p>{collection.description}</p>
       </div>
       <ul className="grid md:grid-cols-3 gap-4 w-full">

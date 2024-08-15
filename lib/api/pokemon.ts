@@ -48,6 +48,13 @@ export async function getAll({ page, limit }: GetAllArgs) {
   };
 }
 
+export async function getList() {
+  return prisma.pokemon.findMany({
+    orderBy: { name: "asc" },
+    select: { id: true, name: true },
+  });
+}
+
 export async function like(pokemonId: string) {
   const { userId } = auth();
 
