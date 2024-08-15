@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import { LikeButton } from "./like-button";
 import Link from "next/link";
+import { Library, MessageCircle } from "lucide-react";
 
 interface Props {
   id: string;
@@ -16,9 +17,19 @@ interface Props {
   imageUrl: string;
   isLiked?: boolean;
   types: Array<{ id: string; name: string; icon?: string | null }>;
+  commentsCount?: number;
+  collectionsCount?: number;
 }
 
-export const PokemonCard = ({ id, name, imageUrl, isLiked, types }: Props) => {
+export const PokemonCard = ({
+  id,
+  name,
+  imageUrl,
+  isLiked,
+  types,
+  commentsCount = 0,
+  collectionsCount = 0,
+}: Props) => {
   return (
     <Card>
       <Link href={`/pokemon/${id}`}>
@@ -41,6 +52,18 @@ export const PokemonCard = ({ id, name, imageUrl, isLiked, types }: Props) => {
 
       <CardFooter className="border-t justify-between py-3">
         <LikeButton pokemonId={id} isLiked={isLiked} />
+        <div className="relative">
+          <MessageCircle />
+          <span className="absolute -top-2 -right-2 bg-red-400 rounded-full w-5 h-5 text-white flex items-center justify-center text-xs font-bold">
+            {commentsCount < 10 ? commentsCount : "9+"}
+          </span>
+        </div>
+        <div className="relative">
+          <Library />
+          <span className="absolute -top-2 -right-2 bg-red-400 rounded-full w-5 h-5 text-white flex items-center justify-center text-xs font-bold">
+            {collectionsCount < 10 ? collectionsCount : "9+"}
+          </span>
+        </div>
       </CardFooter>
     </Card>
   );

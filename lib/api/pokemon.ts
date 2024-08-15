@@ -38,15 +38,24 @@ export async function getAll({ page, limit }: GetAllArgs) {
           },
         },
         likes: { where: { userId }, select: { id: true } },
+        collections: {
+          where: { collection: { userId } },
+          select: { id: true },
+        },
+        comments: {
+          select: { id: true },
+        },
       },
     }),
   ]);
 
   return {
-    data: pokemon.map(({ likes, types, ...rest }) => ({
+    data: pokemon.map(({ likes, types, collections, comments, ...rest }) => ({
       ...rest,
       isLiked: !!likes.length,
       types: types.map(({ type }) => ({ ...type })),
+      collectionsCount: collections.length,
+      commentsCount: comments.length,
     })),
     pagination: { count, pages: Math.ceil(count / limit) },
   };

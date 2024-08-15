@@ -73,6 +73,13 @@ export async function getOne(id: string) {
                 where: { userId },
                 select: { id: true },
               },
+              collections: {
+                where: { collection: { userId } },
+                select: { id: true },
+              },
+              comments: {
+                select: { id: true },
+              },
             },
           },
         },
@@ -86,11 +93,15 @@ export async function getOne(id: string) {
 
   return {
     ...collection,
-    pokemon: collection.pokemon.map(({ pokemon }) => ({
-      ...pokemon,
-      isLiked: !!pokemon.likes.length,
-      types: pokemon.types.map(({ type }) => ({ ...type })),
-    })),
+    pokemon: collection.pokemon.map(
+      ({ pokemon: { likes, types, collections, comments, ...rest } }) => ({
+        ...rest,
+        isLiked: !!likes.length,
+        types: types.map(({ type }) => ({ ...type })),
+        collectionsCount: collections.length,
+        commentsCount: comments.length,
+      })
+    ),
   };
 }
 
