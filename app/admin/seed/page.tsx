@@ -12,7 +12,7 @@ const SeedPage = () => {
   }
 
   return (
-    <div className="flex h-screen flex-col gap-6 items-center justify-center">
+    <div className="flex h-screen flex-col items-center justify-center gap-6">
       <h1>Seed Page</h1>
       <SeedDataButton />
     </div>

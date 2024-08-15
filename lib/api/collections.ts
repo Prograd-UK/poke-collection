@@ -101,7 +101,7 @@ export async function getOne(id: string) {
         types: types.map(({ type }) => ({ ...type })),
         collectionsCount: collections.length,
         commentsCount: comments.length,
-      })
+      }),
     ),
   };
 }

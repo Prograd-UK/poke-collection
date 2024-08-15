@@ -55,7 +55,7 @@ export const LikeButton = ({ pokemonId, isLiked }: Props) => {
         className={cn(
           "group-hover:fill-red-400",
           isLiked && "fill-red-400",
-          isPending && "animate-pulse"
+          isPending && "animate-pulse",
         )}
       />
     </button>

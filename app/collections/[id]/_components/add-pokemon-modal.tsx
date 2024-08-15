@@ -116,12 +116,12 @@ export const AddPokemonModal = ({ collectionId, pokemon }: Props) => {
                           role="combobox"
                           className={cn(
                             "justify-between",
-                            !field.value && "text-muted-foreground"
+                            !field.value && "text-muted-foreground",
                           )}
                         >
                           {field.value
                             ? pokemon.find(
-                                (pokemon) => pokemon.id === field.value
+                                (pokemon) => pokemon.id === field.value,
                               )?.name
                             : "Select Pokemon"}
                           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -152,7 +152,7 @@ export const AddPokemonModal = ({ collectionId, pokemon }: Props) => {
                                     "mr-2 h-4 w-4",
                                     pokemon.id === field.value
                                       ? "opacity-100"
-                                      : "opacity-0"
+                                      : "opacity-0",
                                   )}
                                 />
                                 {pokemon.name}

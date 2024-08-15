@@ -42,7 +42,7 @@ const NavItem = ({ children, href }: NavLinkProps) => {
         <NavigationMenuLink
           className={cn(
             navigationMenuTriggerStyle(),
-            isActive && "bg-accent text-accent-foreground"
+            isActive && "bg-accent text-accent-foreground",
           )}
         >
           {children}

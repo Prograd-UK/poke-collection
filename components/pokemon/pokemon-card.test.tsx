@@ -14,7 +14,7 @@ it("Renders correctly", () => {
       name={name}
       imageUrl={imageUrl}
       types={[]}
-    />
+    />,
   );
 
   expect(screen.getByRole("heading", { name })).toBeInTheDocument();

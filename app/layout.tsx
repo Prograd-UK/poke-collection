@@ -24,8 +24,8 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <header className="h-20 fixed top-0 left-0 w-full px-4 border-b rounded-b-lg shadow-md bg-white flex items-center">
-            <div className="max-w-[1024px] flex items-center justify-between w-full mx-auto">
+          <header className="fixed left-0 top-0 flex h-20 w-full items-center rounded-b-lg border-b bg-white px-4 shadow-md">
+            <div className="mx-auto flex w-full max-w-[1024px] items-center justify-between">
               <Link href="/">
                 <h1 className="font-bold">Poke Collection</h1>
               </Link>
@@ -35,7 +35,7 @@ export default function RootLayout({
               </ClerkLoaded>
             </div>
           </header>
-          <div className="mt-20 py-6 max-w-[1024px] mx-auto px-4 md:px-0">
+          <div className="mx-auto mt-20 max-w-[1024px] px-4 py-6 md:px-0">
             {children}
           </div>
           <Toaster />

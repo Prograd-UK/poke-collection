@@ -28,20 +28,20 @@ const PokemonPage = async ({ params: { id } }: Props) => {
     <div className="space-y-6">
       <div className="space-y-4">
         <div className="flex items-center justify-between gap-4">
-          <h1 className="font-bold text-xl uppercase">{pokemon.name}</h1>
+          <h1 className="text-xl font-bold uppercase">{pokemon.name}</h1>
           <div className="flex items-center gap-3">
             <AddToCollectionModal pokemonId={id} collections={collections} />
             <LikeButton pokemonId={id} isLiked={pokemon.isLiked} />
           </div>
         </div>
-        <div className="flex gap-1 flex-wrap">
+        <div className="flex flex-wrap gap-1">
           {pokemon.types.map((type) => (
             <Badge key={type.id} variant="outline" className="uppercase">
               {type.icon} {type.name}
             </Badge>
           ))}
         </div>
-        <div className="flex gap-1 flex-wrap empty:hidden">
+        <div className="flex flex-wrap gap-1 empty:hidden">
           {pokemon.collections.map((collection) => (
             <Link key={collection.id} href={`/collections/${collection.id}`}>
               <Badge className="uppercase">{collection.name}</Badge>
@@ -56,7 +56,7 @@ const PokemonPage = async ({ params: { id } }: Props) => {
         height={96}
         className="mx-auto"
       />
-      <section className="flex justify-center flex-col gap-6 max-w-[320px] mx-auto">
+      <section className="mx-auto flex max-w-[320px] flex-col justify-center gap-6">
         <Comments pokemonId={id} />
         <CommentForm pokemonId={id} />
       </section>

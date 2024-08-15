@@ -14,7 +14,7 @@ export const Comments = async ({ pokemonId }: Props) => {
 
   if (!comments.length) {
     return (
-      <div className="flex flex-col items-center mx-auto gap-2">
+      <div className="mx-auto flex flex-col items-center gap-2">
         <MessageCircle />
         <p>No comments yet...</p>
       </div>
@@ -26,7 +26,7 @@ export const Comments = async ({ pokemonId }: Props) => {
       {comments.map((comment) => (
         <li key={comment.id}>
           <Card>
-            <CardHeader className="flex-row items-start space-y-0 gap-3">
+            <CardHeader className="flex-row items-start gap-3 space-y-0">
               <Image
                 src={comment.author?.avatar || "/placeholder-avatar.png"}
                 alt={comment.author?.username || "Unknown author"}
@@ -35,7 +35,7 @@ export const Comments = async ({ pokemonId }: Props) => {
                 className="rounded-full"
               />
               <div>
-                <h3 className="leading-none text-sm font-bold">
+                <h3 className="text-sm font-bold leading-none">
                   {comment.author?.username || "Unknown author"}
                 </h3>
                 <small>

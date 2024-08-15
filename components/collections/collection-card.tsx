@@ -26,14 +26,14 @@ export const CollectionCard = ({
   return (
     <Card className={cn("flex flex-col", className)}>
       <CardHeader>
-        <CardTitle className="uppercase text-xl text-center">{name}</CardTitle>
+        <CardTitle className="text-center text-xl uppercase">{name}</CardTitle>
       </CardHeader>
-      <CardContent className="flex justify-center flex-grow">
+      <CardContent className="flex flex-grow justify-center">
         {description && <p>{description}</p>}
       </CardContent>
-      <CardFooter className="border-t justify-between py-3">
+      <CardFooter className="justify-between border-t py-3">
         <Badge variant="outline" className="flex items-center gap-1">
-          <CatIcon className="w-4 h-4" />
+          <CatIcon className="h-4 w-4" />
           <span>{pokemonCount}</span>
         </Badge>
       </CardFooter>

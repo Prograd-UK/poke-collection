@@ -11,10 +11,10 @@ const CollectionsPage = async () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-4">
-        <h1 className="font-bold text-xl">Your collections</h1>
+        <h1 className="text-xl font-bold">Your collections</h1>
         <AddCollectionModal />
       </div>
-      <ul className="grid md:grid-cols-3 gap-4 w-full">
+      <ul className="grid w-full gap-4 md:grid-cols-3">
         {collections.map((collection) => (
           <li key={collection.id}>
             <Link href={`/collections/${collection.id}`}>

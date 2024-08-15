@@ -31,7 +31,7 @@ const HomePage = async ({ searchParams }: Props) => {
 
   return (
     <main className="flex flex-col items-center justify-center gap-6">
-      <ul className="grid md:grid-cols-3 gap-4 w-full">
+      <ul className="grid w-full gap-4 md:grid-cols-3">
         {pokemon.map((pokemon) => (
           <li key={pokemon.id}>
             <PokemonCard {...pokemon} />
@@ -62,7 +62,7 @@ const HomePage = async ({ searchParams }: Props) => {
               <PaginationItem key={item}>
                 <PaginationEllipsis />
               </PaginationItem>
-            )
+            ),
           )}
           {page !== pages && (
             <PaginationItem>

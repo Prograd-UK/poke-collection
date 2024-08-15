@@ -36,10 +36,10 @@ export const PokemonCard = ({
     <Card>
       <Link href={`/pokemon/${id}`}>
         <CardHeader>
-          <CardTitle className="uppercase text-xl text-center">
+          <CardTitle className="text-center text-xl uppercase">
             {name}
           </CardTitle>
-          <div className="flex gap-1 flex-wrap justify-center">
+          <div className="flex flex-wrap justify-center gap-1">
             {types.map((type) => (
               <Badge key={type.id} variant="outline" className="uppercase">
                 {type.icon} {type.name}
@@ -52,17 +52,17 @@ export const PokemonCard = ({
         </CardContent>
       </Link>
 
-      <CardFooter className="border-t justify-between py-3">
+      <CardFooter className="justify-between border-t py-3">
         <LikeButton pokemonId={id} isLiked={isLiked} />
         <div className="relative">
           <MessageCircle />
-          <span className="absolute -top-2 -right-2 bg-red-400 rounded-full w-5 h-5 text-white flex items-center justify-center text-xs font-bold">
+          <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-400 text-xs font-bold text-white">
             {commentsCount < 10 ? commentsCount : "9+"}
           </span>
         </div>
         <div className="relative">
           <Library />
-          <span className="absolute -top-2 -right-2 bg-red-400 rounded-full w-5 h-5 text-white flex items-center justify-center text-xs font-bold">
+          <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-400 text-xs font-bold text-white">
             {collectionsCount < 10 ? collectionsCount : "9+"}
           </span>
         </div>
