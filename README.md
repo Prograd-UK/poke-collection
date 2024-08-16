@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pokémon Collection App
+
+Welcome to the **Pokémon Collection App**! This is a base application designed for a technical challenge where you'll extend the app by implementing new features. The app allows users to browse Pokémon, like them, add them to collections, and leave comments. Authentication is handled via Clerk.
+
+## Requirements
+
+- **Node.js**: v20 or higher
+- **pnpm**: Package manager used for managing dependencies and scripts
+
+## Stack
+
+- **Next.js**: React framework for building the frontend and API routes.
+- **TypeScript**: Statically typed JavaScript for writing type-safe code.
+- **SQLite**: Simple, lightweight database used via Prisma ORM.
+- **Prisma**: Next-generation ORM for interacting with the SQLite database.
 
 ## Getting Started
 
-First, run the development server:
+To set up the project locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Fork the Repository**: Click on the "Fork" button in the top right corner of the repository to create your own copy of the project.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Clone Your Fork**:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   git clone https://github.com/<your-username>/poke-collection.git
+   cd poke-collection
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. **Install Dependencies**:
 
-## Learn More
+   ```bash
+   pnpm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run the Application Locally**
+   ```
+   pnpm dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application will start on `http://localhost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Features
 
-## Deploy on Vercel
+The base application includes the following features:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Authentication via Clerk**: Users can sign up, log in, and manage their sessions.
+- **Browse Pokémon**: View a list of Pokémon fetched from an external API and stored in a SQLite database.
+- **Like Pokémon**: Users can like Pokémon and see the like count.
+- **Create Collections**: Users can create personal collections to organize their favorite Pokémon.
+- **Add Pokémon to Collections**: Users can add specific Pokémon to their created collections.
+- **Comment on Pokémon**: Users can leave comments on individual Pokémon.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Useful Documentation
+
+Here are some useful links to documentation that may assist you during development:
+
+- [Next.js Documentation](https://nextjs.org/docs): Official documentation for Next.js, covering setup, API routes, and more.
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/): Comprehensive guide to TypeScript.
+- [Prisma Documentation](https://www.prisma.io/docs): Official Prisma docs, including guides on schema modeling, migrations, and querying data.
+- [SQLite Documentation](https://www.sqlite.org/docs.html): Official SQLite documentation.
+- [Clerk Documentation](https://clerk.dev/docs): Documentation for setting up and using Clerk for authentication.
+
+## Contributing
+
+If you wish to contribute to this project, please make sure to create a new branch from `main` for your changes and submit a pull request once your changes are ready for review.
+
+Happy coding! 🎉

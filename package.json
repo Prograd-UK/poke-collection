@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "env-cmd -f .env.test npx prisma db push --force-reset && env-cmd -f .env.test vitest",
+    "postinstall": "npx prisma generate",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:studio": "npx prisma studio"
   },
