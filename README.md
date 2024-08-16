@@ -33,7 +33,20 @@ To set up the project locally, follow these steps:
    pnpm install
    ```
 
-4. **Run the Application Locally**
+4. **Create your local `.env` file**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Replace placeholder Clerk keys values:
+
+   ```
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_123
+   CLERK_SECRET_KEY=sk_test_123
+   ```
+
+5. **Run the Application Locally**
    ```
    pnpm dev
    ```
