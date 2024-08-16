@@ -74,6 +74,10 @@ Here are some useful links to documentation that may assist you during developme
 - [SQLite Documentation](https://www.sqlite.org/docs.html): Official SQLite documentation.
 - [Clerk Documentation](https://clerk.dev/docs): Documentation for setting up and using Clerk for authentication.
 
+## Tasks
+
+- [Checklists Backend](./tasks/be-checklist.md)
+
 ## Contributing
 
 If you wish to contribute to this project, please make sure to create a new branch from `main` for your changes and submit a pull request once your changes are ready for review.
