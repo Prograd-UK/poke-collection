@@ -98,3 +98,35 @@ model Comment {
   @@index([userId])
   @@index([pokemonId])
 }
+
+model Checklist {
+  id        String          @id @default(cuid())
+  name      String
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  steps     ChecklistStep[]
+}
+
+model ChecklistStep {
+  id          String    @id @default(cuid())
+  type String  @unique
+  name String
+  description String
+  checklist   Checklist @relation(fields: [checklistId], references: [id])
+  checklistId String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model UserChecklistStepCompletion {
+  id String          @id @default(cuid())
+  completed Boolean @default(false)
+  checklistStepId String
+  userId String
+
+  @@unique([userId, checklistStepId])
+}
+
+// 1. like your first pokemon
+// 2. comment on your first pokemon
+// 3. add water type pokemon to your collection
